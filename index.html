@@ -150,6 +150,15 @@
   .bstep h4 .amt{color:var(--muted);font-weight:600;font-size:.88rem}
   .bstep p{color:var(--muted);font-size:.96rem;line-height:1.55}
   .village-wrap{max-width:560px;margin:0 auto}
+  /* Village register form */
+  .reg-form{display:flex;flex-direction:column;gap:10px;border-top:1px solid var(--line);padding-top:20px;margin-bottom:8px}
+  .reg-in{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:10px;padding:13px 14px;color:var(--cream);font-family:'Inter';font-size:.95rem}
+  .reg-in::placeholder{color:#8f8266}
+  .reg-in:focus{outline:none;border-color:var(--gold)}
+  .reg-row{display:flex;gap:10px;flex-wrap:wrap}
+  .reg-row .reg-in{flex:1 1 150px}
+  .reg-msg{font-weight:600;font-size:.94rem;color:var(--gold2);margin:6px 0 12px}
+  .reg-msg:empty{margin:0}
   /* Birthday — personal code + share */
   .code-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:18px;margin-bottom:18px}
   .code-lbl{display:block;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
@@ -382,30 +391,23 @@
       <div class="village-card">
         <p class="tag">The Village Package</p>
         <div class="price">$88</div>
-
-        <!-- Personal code + share.
-             TODO: inject the celebrant's real Humanitix personal code into data-code (and replace [age] in the share
-             message below) once codes are personalised. Placeholder shown until wired. -->
-        <div class="code-row">
-          <div>
-            <span class="code-lbl">Your code</span>
-            <span class="code-chip" id="bdayCode" data-code="YOUR-CODE">YOUR-CODE</span>
-          </div>
-          <div class="code-btns">
-            <button type="button" class="cbtn" id="copyCode">Copy code</button>
-            <button type="button" class="cbtn" id="shareCode">Share</button>
-          </div>
-        </div>
-
-        <!-- Progress bar. TODO: wire VILLAGE_BOOKED (in script) to the real per-code booking count from Humanitix.
-             Defaults to 0 (true starting state) — never render a fabricated number. -->
-        <div class="prog-label"><span>Friends booked</span><span id="bookedLabel">0 / 8</span></div>
-        <div class="prog"><i id="progBar"></i></div>
-        <p class="prog-note" id="progNote">8 more and your birthday's free — plus your bottle is unlocked.</p>
-
         <p class="inc">Your seat · group seating · a cocktail on arrival · a shot (tequila or vodka) · a live song, just for you.</p>
-        <a class="btn btn-primary" href="https://events.humanitix.com/live-liquid-sessions" style="width:100%;justify-content:center">Book Your Birthday</a>
-        <p class="fine">Guests must book by Saturday 22 August. One code per celebrant. Refund issued the week of the event once 8 guests have booked.</p>
+
+        <!-- Register your celebration → posts to Google Sheet via REGISTER_ENDPOINT (script below).
+             Falls back to emailing REGISTER_FALLBACK_EMAIL until the endpoint is wired. -->
+        <form id="villageForm" class="reg-form" novalidate>
+          <input class="reg-in" name="name" placeholder="Your name" required>
+          <input class="reg-in" name="occasion" placeholder="What are you celebrating? (birthday, hens…)" required>
+          <div class="reg-row">
+            <input class="reg-in" name="date" placeholder="Celebration date">
+            <input class="reg-in" name="email" type="email" placeholder="Email" required>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Register my celebration →</button>
+        </form>
+        <p id="villageMsg" class="reg-msg" role="status"></p>
+
+        <p class="fine">Register and we'll email you your personal code and set up your table. Share your code — when 8 friends book, your $88 is refunded in full AND Calabria Wines sends a personalised bottle of Belena, name on the label. Guests must book by Saturday 22 August.</p>
+        <a class="btn btn-ghost" href="https://events.humanitix.com/live-liquid-sessions" style="width:100%;justify-content:center;margin-top:8px">Or book The Village now →</a>
       </div>
     </div>
   </div>
@@ -523,45 +525,46 @@
     document.querySelectorAll('.acc-item').forEach(x=>{x.classList.remove('open');x.querySelector('.acc-a').style.maxHeight=null});
     if(!open){i.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}
   }));
-  // ===== Village birthday: progress bar + shareable code + wine sponsor =====
-  // TODO: wire VILLAGE_BOOKED to the real per-code booking count from Humanitix.
-  //       Leave at 0 until a live data source exists — never show a fabricated number.
-  const VILLAGE_BOOKED = 0;
-  // SINGLE SWAP POINT for the wine sponsor (name + bottle). Set live per client.
-  // To REVERT to generic "bottle of sparkling" (e.g. if the sponsorship falls through),
-  // set WINE_SPONSOR = null — the copy below and the static Column-3/FAQ text revert to generic.
+  // ===== Village: wine sponsor copy + celebration register form =====
+  // SINGLE SWAP POINT for the wine sponsor. To revert to generic "bottle of sparkling"
+  // (if the sponsorship falls through), set WINE_SPONSOR = null.
   const WINE_SPONSOR = "Calabria Wines";
-  const WINE_BOTTLE  = "Belena"; // the personalised bottle product (used only when WINE_SPONSOR is set)
+  const WINE_BOTTLE  = "Belena";
+  // Paste the Google Apps Script Web App URL here once deployed (see setup notes).
+  // While empty, the register form falls back to emailing REGISTER_FALLBACK_EMAIL.
+  const REGISTER_ENDPOINT = "";
+  const REGISTER_FALLBACK_EMAIL = "hello@liveliquidsessions.com.au";
   (function village(){
-    const n = Math.max(0, Math.min(8, VILLAGE_BOOKED)), left = 8 - n;
-    const bar=document.getElementById('progBar'), lbl=document.getElementById('bookedLabel'),
-          note=document.getElementById('progNote'), col=document.getElementById('wineCol');
-    const bottle = WINE_SPONSOR ? WINE_BOTTLE + ' bottle' : 'bottle';
-    if(bar) bar.style.width = (n/8*100)+'%';
-    if(lbl) lbl.textContent = n + ' / 8';
-    if(note) note.textContent = left>0
-      ? left + " more and your birthday's free — plus your " + bottle + " is unlocked."
-      : "That's 8 — your birthday's free and your " + bottle + " is on its way. 🎉";
+    const col=document.getElementById('wineCol');
     if(col) col.textContent = WINE_SPONSOR
-      ? WINE_SPONSOR + ' sends a personalised bottle of ' + WINE_BOTTLE + ' to your table, with your name on the label.'
+      ? WINE_SPONSOR + " sends a personalised bottle of " + WINE_BOTTLE + " to your table, with your name on the label."
       : "we'll send a bottle of sparkling to your table, with your name on the label.";
-    // Copy / share the personal code
-    const chip=document.getElementById('bdayCode');
-    const code=chip ? (chip.dataset.code||chip.textContent.trim()) : '';
-    const link='https://liveliquidsessions.com.au';
-    const copyBtn=document.getElementById('copyCode'), shareBtn=document.getElementById('shareCode');
-    const flash=(b,m)=>{const o=b.textContent;b.textContent=m;b.disabled=true;setTimeout(()=>{b.textContent=o;b.disabled=false;},1500);};
-    if(copyBtn) copyBtn.addEventListener('click',async()=>{
-      try{await navigator.clipboard.writeText(code);flash(copyBtn,'Copied ✓');}catch(e){flash(copyBtn,'Copy failed');}
+    const form=document.getElementById('villageForm'), msg=document.getElementById('villageMsg');
+    if(!form) return;
+    form.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const fd=new FormData(form);
+      const data={ name:(fd.get('name')||'').trim(), occasion:(fd.get('occasion')||'').trim(), date:(fd.get('date')||'').trim(), email:(fd.get('email')||'').trim() };
+      if(!data.name || !data.email){ msg.textContent="Please add your name and email."; return; }
+      const btn=form.querySelector("button[type=submit]"), label=btn.textContent;
+      btn.disabled=true; btn.textContent="Sending…";
+      try{
+        if(REGISTER_ENDPOINT){
+          await fetch(REGISTER_ENDPOINT, {method:"POST", mode:"no-cors", headers:{"Content-Type":"text/plain;charset=utf-8"}, body:JSON.stringify(data)});
+          msg.textContent="You're in! 🎉 We'll email your personal code and set up your table shortly.";
+          form.reset();
+        } else {
+          const subject=encodeURIComponent("Village registration — "+data.name);
+          const body=encodeURIComponent("Name: "+data.name+"\nCelebrating: "+data.occasion+"\nDate: "+data.date+"\nEmail: "+data.email);
+          window.location.href="mailto:"+REGISTER_FALLBACK_EMAIL+"?subject="+subject+"&body="+body;
+          msg.textContent="Opening your email — hit send and you're registered! 🎉";
+        }
+      }catch(err){
+        msg.textContent="That didn't go through — please email "+REGISTER_FALLBACK_EMAIL;
+      }finally{
+        btn.disabled=false; btn.textContent=label;
+      }
     });
-    if(shareBtn){
-      // TODO: replace [age] with the celebrant's age once codes are personalised.
-      const msg="I'm turning [age] and you're invited to Live Liquid Sessions — use my code "+code+" for $5 off your seat: "+link;
-      shareBtn.addEventListener('click',async()=>{
-        if(navigator.share){ try{await navigator.share({title:'Live Liquid Sessions',text:msg,url:link});}catch(e){} }
-        else { try{await navigator.clipboard.writeText(msg);flash(shareBtn,'Message copied ✓');}catch(e){flash(shareBtn,'Copy failed');} }
-      });
-    }
   })();
 
   // countdown to doors — Sat 29 Aug 2026, 12:50pm AEST (+10)
