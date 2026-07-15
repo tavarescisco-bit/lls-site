@@ -325,7 +325,7 @@
           <span class="urgency">Selling fast</span>
         </div>
         <ul>
-          <li>✦ A complimentary spritz cocktail on arrival</li>
+          <li>✦ A glass of sparkling on arrival</li>
           <li>✦ Guaranteed seat (general seating — arrive early for the best spot)</li>
           <li>✦ Settle in for the whole sitting</li>
         </ul>
@@ -339,7 +339,7 @@
           <span class="urgency">Selling fast</span>
         </div>
         <ul>
-          <li>✦ A free glass of Prosecco on arrival</li>
+          <li>✦ A glass of spritz on arrival</li>
           <li>✦ Right in the middle of it all</li>
           <li>✦ No bad view, no bad vibe</li>
           <li>✦ Bar open the entire session</li>
@@ -363,7 +363,7 @@
       <div class="bstep">
         <span class="n">1</span>
         <h4>Book The Village <span class="amt">$88</span></h4>
-        <p>Your seat, your crew seated together, a complimentary spritz cocktail and a shot (tequila or vodka) to kick things off, and a live song from the band just for you.</p>
+        <p>Your seat, your crew seated together, a cocktail on arrival and a shot (tequila or vodka) to kick things off, and a live song from the band just for you.</p>
       </div>
       <div class="bstep">
         <span class="n">2</span>
@@ -374,7 +374,7 @@
         <span class="n">3</span>
         <h4>Bring 8, get it all free</h4>
         <!-- WINE SPONSOR: generic copy renders by default. Single swap point is WINE_SPONSOR in the script below. -->
-        <p>Your $88 is refunded in full — and <span id="wineCol">we'll send a bottle of sparkling to your table, with your name on the label.</span></p>
+        <p>Your $88 is refunded in full — and <span id="wineCol">Calabria Wines sends a personalised bottle of Belena to your table, with your name on the label.</span></p>
       </div>
     </div>
 
@@ -403,7 +403,7 @@
         <div class="prog"><i id="progBar"></i></div>
         <p class="prog-note" id="progNote">8 more and your birthday's free — plus your bottle is unlocked.</p>
 
-        <p class="inc">Your seat · group seating · a complimentary spritz cocktail · a shot (tequila or vodka) · a live song, just for you.</p>
+        <p class="inc">Your seat · group seating · a cocktail on arrival · a shot (tequila or vodka) · a live song, just for you.</p>
         <a class="btn btn-primary" href="https://events.humanitix.com/live-liquid-sessions" style="width:100%;justify-content:center">Book Your Birthday</a>
         <p class="fine">Guests must book by Saturday 22 August. One code per celebrant. Refund issued the week of the event once 8 guests have booked.</p>
       </div>
@@ -456,8 +456,8 @@
       <div class="acc-item"><button class="acc-q">Is seating assigned? <span class="ic">+</span></button><div class="acc-a"><p>Seated tickets get a guaranteed seat and a welcome drink — seating is general, so arrive early for the best spot. Standing puts you right in the middle of it all, no bad view.</p></div></div>
       <div class="acc-item"><button class="acc-q">Which sitting should I pick? <span class="ic">+</span></button><div class="acc-a"><p>The Long Lunch (1–3pm) is the relaxed one; the Golden Hour (4–6pm) is the warm wind-down. Same bill either way.</p></div></div>
       <div class="acc-item"><button class="acc-q">What's the music? <span class="ic">+</span></button><div class="acc-a"><p>Live old-school R&amp;B — slow jams, R&amp;B classics, New Jack Swing — from The Men of R&amp;B Project, hosted by MC Simba.</p></div></div>
-      <div class="acc-item"><button class="acc-q">Do tickets include a drink? <span class="ic">+</span></button><div class="acc-a"><p>Yes — every ticket includes a complimentary drink on arrival: a spritz cocktail with Seated, a glass of Prosecco with Standing. The bar stays open all afternoon, with drinks by Lankan Tucker.</p></div></div>
-      <div class="acc-item"><button class="acc-q">What's this about a free bottle? <span class="ic">+</span></button><div class="acc-a"><p>When 8 friends book your birthday using your code, we refund your Village package in full AND send a bottle of sparkling to your table with your name on the label — on us.</p></div></div>
+      <div class="acc-item"><button class="acc-q">Do tickets include a drink? <span class="ic">+</span></button><div class="acc-a"><p>Yes — every ticket includes a complimentary drink on arrival: a glass of sparkling with Seated, a spritz with Standing. The bar stays open all afternoon, with drinks by Lankan Tucker.</p></div></div>
+      <div class="acc-item"><button class="acc-q">What's this about a free bottle? <span class="ic">+</span></button><div class="acc-a"><p>When 8 friends book your birthday using your code, we refund your Village package in full AND send a personalised bottle of Belena (Calabria Wines) to your table with your name on the label — on us.</p></div></div>
       <div class="acc-item"><button class="acc-q">What's the age policy? <span class="ic">+</span></button><div class="acc-a"><p>18+ only.</p></div></div>
     </div>
   </div>
@@ -527,22 +527,24 @@
   // TODO: wire VILLAGE_BOOKED to the real per-code booking count from Humanitix.
   //       Leave at 0 until a live data source exists — never show a fabricated number.
   const VILLAGE_BOOKED = 0;
-  // SINGLE SWAP POINT for the wine sponsor. Generic "bottle of sparkling" copy renders
-  // everywhere until this is set. Once the Calabria Wine sponsorship is CONFIRMED, set:
-  //   const WINE_SPONSOR = "Calabria Wine";   (optionally add their logo separately)
-  const WINE_SPONSOR = null;
+  // SINGLE SWAP POINT for the wine sponsor (name + bottle). Set live per client.
+  // To REVERT to generic "bottle of sparkling" (e.g. if the sponsorship falls through),
+  // set WINE_SPONSOR = null — the copy below and the static Column-3/FAQ text revert to generic.
+  const WINE_SPONSOR = "Calabria Wines";
+  const WINE_BOTTLE  = "Belena"; // the personalised bottle product (used only when WINE_SPONSOR is set)
   (function village(){
     const n = Math.max(0, Math.min(8, VILLAGE_BOOKED)), left = 8 - n;
     const bar=document.getElementById('progBar'), lbl=document.getElementById('bookedLabel'),
           note=document.getElementById('progNote'), col=document.getElementById('wineCol');
-    const bottle = WINE_SPONSOR ? WINE_SPONSOR + ' bottle' : 'bottle';
+    const bottle = WINE_SPONSOR ? WINE_BOTTLE + ' bottle' : 'bottle';
     if(bar) bar.style.width = (n/8*100)+'%';
     if(lbl) lbl.textContent = n + ' / 8';
     if(note) note.textContent = left>0
       ? left + " more and your birthday's free — plus your " + bottle + " is unlocked."
       : "That's 8 — your birthday's free and your " + bottle + " is on its way. 🎉";
-    if(col) col.textContent = (WINE_SPONSOR ? WINE_SPONSOR + ' sends' : "we'll send")
-      + ' a bottle of sparkling to your table, with your name on the label.';
+    if(col) col.textContent = WINE_SPONSOR
+      ? WINE_SPONSOR + ' sends a personalised bottle of ' + WINE_BOTTLE + ' to your table, with your name on the label.'
+      : "we'll send a bottle of sparkling to your table, with your name on the label.";
     // Copy / share the personal code
     const chip=document.getElementById('bdayCode');
     const code=chip ? (chip.dataset.code||chip.textContent.trim()) : '';
