@@ -88,6 +88,12 @@
   .tk ul{list-style:none;margin:18px 0 26px}
   .tk li{padding:8px 0;border-top:1px solid var(--line);font-weight:500;color:#e2d6bd}
   .tk li:first-child{border-top:0}
+  .tk-intro{text-align:center;max-width:62ch;margin:-18px auto 34px;color:#d9ccae;font-size:1.02rem;line-height:1.6}
+  .tk .ptop{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .tk .urgency{font-size:.64rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);background:rgba(217,169,78,.12);border:1px solid var(--line);padding:6px 11px;border-radius:100px;white-space:nowrap}
+  .tk-crosslink{text-align:center;margin-top:24px}
+  .tk-crosslink a{color:var(--gold2);font-weight:700;border-bottom:1px solid rgba(233,198,126,.4);padding-bottom:2px;transition:color .18s}
+  .tk-crosslink a:hover{color:var(--gold)}
 
   /* FAQ */
   .faq h2{font-size:clamp(2rem,5vw,3.2rem);font-weight:900;margin-bottom:30px}
@@ -123,22 +129,35 @@
 
   /* BIRTHDAYS */
   .bday{background:var(--bg2)}
-  .bday-wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
   .bday h2{font-size:clamp(2.1rem,5vw,3.4rem);font-weight:900}
   .bday h2 em{font-style:italic;font-family:'Fraunces';font-weight:500;color:var(--gold2)}
   .bday .lead{color:#d9ccae;font-size:1.1rem;margin:16px 0 8px;max-width:46ch}
-  .step{padding:18px 0;border-top:1px solid var(--line)}
-  .step h4{font-family:'Fraunces';font-weight:700;font-size:1.15rem;color:var(--gold2);margin-bottom:4px}
-  .step p{color:var(--muted);font-size:.98rem}
   .village-card{background:linear-gradient(180deg,#241d12,#191309);border:1px solid var(--gold);border-radius:var(--radius);padding:38px 34px;box-shadow:0 30px 60px -40px rgba(217,169,78,.6)}
   .village-card .tag{font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.72rem;color:var(--gold)}
   .village-card .price{font-family:'Fraunces';font-weight:900;font-size:3.4rem;line-height:1;margin:6px 0 18px}
   .prog-label{display:flex;justify-content:space-between;font-size:.84rem;color:var(--muted);margin-bottom:8px}
   .prog{height:9px;background:rgba(233,198,126,.15);border-radius:100px;overflow:hidden}
-  .prog i{display:block;height:100%;width:75%;background:linear-gradient(90deg,var(--gold2),var(--gold));border-radius:100px}
+  .prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold2),var(--gold));border-radius:100px;transition:width .5s ease}
   .prog-note{color:var(--gold2);font-size:.9rem;margin:10px 0 20px;font-weight:600}
   .village-card .inc{color:#d9ccae;font-size:.96rem;border-top:1px solid var(--line);padding-top:18px;margin-bottom:22px}
   .fine{color:#8f8266;font-size:.8rem;margin-top:16px;line-height:1.6}
+  /* Birthday — 3-step explainer */
+  .bday-lead{color:#d9ccae;font-size:1.12rem;max-width:58ch;margin:0 0 6px}
+  .bday-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:34px 0 42px}
+  .bstep{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px;position:relative}
+  .bstep .n{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:linear-gradient(180deg,var(--gold2),var(--gold));color:#211705;font-family:'Fraunces';font-weight:900;margin-bottom:16px}
+  .bstep h4{font-family:'Fraunces';font-weight:700;font-size:1.16rem;color:var(--gold2);margin-bottom:8px}
+  .bstep h4 .amt{color:var(--muted);font-weight:600;font-size:.88rem}
+  .bstep p{color:var(--muted);font-size:.96rem;line-height:1.55}
+  .village-wrap{max-width:560px;margin:0 auto}
+  /* Birthday — personal code + share */
+  .code-row{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:18px;margin-bottom:18px}
+  .code-lbl{display:block;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:4px}
+  .code-chip{font-family:'Fraunces';font-weight:900;font-size:1.2rem;color:var(--gold2);letter-spacing:.04em}
+  .code-btns{display:flex;gap:8px}
+  .cbtn{font-family:'Inter';font-weight:700;font-size:.8rem;padding:9px 14px;border-radius:100px;border:1px solid var(--gold);background:transparent;color:var(--cream);cursor:pointer;transition:border-color .18s,color .18s;white-space:nowrap}
+  .cbtn:hover{border-color:var(--gold2);color:var(--gold2)}
+  .cbtn:disabled{opacity:.7;cursor:default}
 
   /* FOOD & DRINKS */
   .fd-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:8px}
@@ -182,7 +201,7 @@
 
   @media(max-width:900px){
     .grid,.vibe-cards,.buzz-grid,.fd-grid{grid-template-columns:repeat(2,1fr)}
-    .sit-grid,.tk-grid,.map-wrap,.bday-wrap{grid-template-columns:1fr}
+    .sit-grid,.tk-grid,.map-wrap,.bday-steps{grid-template-columns:1fr}
     .map-frame{min-height:320px}
     .nav-links{position:fixed;inset:70px 0 auto 0;flex-direction:column;align-items:flex-start;background:var(--bg2);gap:0;padding:12px 24px 22px;border-bottom:1px solid var(--line);transform:translateY(-160%);transition:transform .3s}
     .nav-links.show{transform:none}
@@ -295,13 +314,18 @@
 <section class="tickets" id="tickets" style="background:var(--bg2)">
   <div class="wrap">
     <div class="head"><p class="eyebrow">Tickets</p><h2>Two ways <span class="gold">in</span>.</h2></div>
+    <p class="tk-intro">Every ticket includes a complimentary drink on arrival. Seated adds a guaranteed seat for $10 more — Standing puts you right in the middle of it, bar open all afternoon.</p>
     <div class="tk-grid">
       <div class="tk feat">
         <span class="badge">Includes a drink</span>
         <h3>Seated</h3>
-        <div class="price">$58 <small>per person</small></div>
+        <div class="ptop">
+          <div class="price">$58 <small>per person</small></div>
+          <!-- TODO: wire "urgency" to real Humanitix inventory, or update this text manually. Do NOT hardcode a fake seat count. -->
+          <span class="urgency">Selling fast</span>
+        </div>
         <ul>
-          <li>✦ A welcome drink on arrival</li>
+          <li>✦ A complimentary spritz cocktail on arrival</li>
           <li>✦ Guaranteed seat (general seating — arrive early for the best spot)</li>
           <li>✦ Settle in for the whole sitting</li>
         </ul>
@@ -309,8 +333,13 @@
       </div>
       <div class="tk">
         <h3>Standing</h3>
-        <div class="price">$48 <small>per person</small></div>
+        <div class="ptop">
+          <div class="price">$48 <small>per person</small></div>
+          <!-- TODO: wire "urgency" to real Humanitix inventory, or update this text manually. Do NOT hardcode a fake seat count. -->
+          <span class="urgency">Selling fast</span>
+        </div>
         <ul>
+          <li>✦ A free glass of Prosecco on arrival</li>
           <li>✦ Right in the middle of it all</li>
           <li>✦ No bad view, no bad vibe</li>
           <li>✦ Bar open the entire session</li>
@@ -318,7 +347,8 @@
         <a class="btn btn-ghost" href="https://events.humanitix.com/live-liquid-sessions" style="width:100%;justify-content:center">Get Standing Tickets</a>
       </div>
     </div>
-    <p style="text-align:center;margin-top:26px;color:var(--muted)">Drinks by Lankan Tucker · 18+ only · Limited capacity — when a sitting's gone, it's gone.</p>
+    <p class="tk-crosslink"><a href="#birthdays">Booking for a birthday? Bring 8 and go free — see below ↓</a></p>
+    <p style="text-align:center;margin-top:20px;color:var(--muted)">Drinks by Lankan Tucker · 18+ only · Limited capacity — when a sitting's gone, it's gone.</p>
   </div>
 </section>
 
@@ -326,20 +356,54 @@
 <section class="bday" id="birthdays">
   <div class="wrap">
     <div class="head"><p class="eyebrow">Birthdays &amp; Celebrations</p><h2>Your birthday. <em>On us.</em></h2><p style="color:var(--muted);margin-top:6px">(No, really.)</p></div>
-    <div class="bday-wrap">
-      <div>
-        <p class="lead">Turning a year older? Make the whole room sing for it. Book The Village, bring your people, and we'll give you your money back.</p>
-        <div class="step"><h4>Book The Village</h4><p>Your seat, your crew seated together, a bottle of sparkling for the table — and the band sings you a song.</p></div>
-        <div class="step"><h4>Share your code</h4><p>We give you a personal code. Your guests get $5 off their seat when they use it.</p></div>
-        <div class="step"><h4>Get it free</h4><p>When 8 friends book with your code, your package is refunded in full. Your birthday's on the house.</p></div>
+    <p class="bday-lead">Turning a year older? Make the whole room sing for it. Book The Village, bring your people, and we'll give you your money back — bottle and all.</p>
+
+    <!-- 3-step explainer -->
+    <div class="bday-steps">
+      <div class="bstep">
+        <span class="n">1</span>
+        <h4>Book The Village <span class="amt">$88</span></h4>
+        <p>Your seat, your crew seated together, a complimentary spritz cocktail and a shot (tequila or vodka) to kick things off, and a live song from the band just for you.</p>
       </div>
+      <div class="bstep">
+        <span class="n">2</span>
+        <h4>Share your code</h4>
+        <p>Guests get $5 off their seat when they use it. The more you share, the closer you get.</p>
+      </div>
+      <div class="bstep">
+        <span class="n">3</span>
+        <h4>Bring 8, get it all free</h4>
+        <!-- WINE SPONSOR: generic copy renders by default. Single swap point is WINE_SPONSOR in the script below. -->
+        <p>Your $88 is refunded in full — and <span id="wineCol">we'll send a bottle of sparkling to your table, with your name on the label.</span></p>
+      </div>
+    </div>
+
+    <div class="village-wrap">
       <div class="village-card">
         <p class="tag">The Village Package</p>
         <div class="price">$88</div>
-        <div class="prog-label"><span>Friends booked</span><span>6 / 8</span></div>
-        <div class="prog"><i></i></div>
-        <p class="prog-note">2 more friends and your birthday is free.</p>
-        <p class="inc">Your seat · group seating · a bottle of sparkling · a live song, just for you.</p>
+
+        <!-- Personal code + share.
+             TODO: inject the celebrant's real Humanitix personal code into data-code (and replace [age] in the share
+             message below) once codes are personalised. Placeholder shown until wired. -->
+        <div class="code-row">
+          <div>
+            <span class="code-lbl">Your code</span>
+            <span class="code-chip" id="bdayCode" data-code="YOUR-CODE">YOUR-CODE</span>
+          </div>
+          <div class="code-btns">
+            <button type="button" class="cbtn" id="copyCode">Copy code</button>
+            <button type="button" class="cbtn" id="shareCode">Share</button>
+          </div>
+        </div>
+
+        <!-- Progress bar. TODO: wire VILLAGE_BOOKED (in script) to the real per-code booking count from Humanitix.
+             Defaults to 0 (true starting state) — never render a fabricated number. -->
+        <div class="prog-label"><span>Friends booked</span><span id="bookedLabel">0 / 8</span></div>
+        <div class="prog"><i id="progBar"></i></div>
+        <p class="prog-note" id="progNote">8 more and your birthday's free — plus your bottle is unlocked.</p>
+
+        <p class="inc">Your seat · group seating · a complimentary spritz cocktail · a shot (tequila or vodka) · a live song, just for you.</p>
         <a class="btn btn-primary" href="https://events.humanitix.com/live-liquid-sessions" style="width:100%;justify-content:center">Book Your Birthday</a>
         <p class="fine">Guests must book by Saturday 22 August. One code per celebrant. Refund issued the week of the event once 8 guests have booked.</p>
       </div>
@@ -392,7 +456,8 @@
       <div class="acc-item"><button class="acc-q">Is seating assigned? <span class="ic">+</span></button><div class="acc-a"><p>Seated tickets get a guaranteed seat and a welcome drink — seating is general, so arrive early for the best spot. Standing puts you right in the middle of it all, no bad view.</p></div></div>
       <div class="acc-item"><button class="acc-q">Which sitting should I pick? <span class="ic">+</span></button><div class="acc-a"><p>The Long Lunch (1–3pm) is the relaxed one; the Golden Hour (4–6pm) is the warm wind-down. Same bill either way.</p></div></div>
       <div class="acc-item"><button class="acc-q">What's the music? <span class="ic">+</span></button><div class="acc-a"><p>Live old-school R&amp;B — slow jams, R&amp;B classics, New Jack Swing — from The Men of R&amp;B Project, hosted by MC Simba.</p></div></div>
-      <div class="acc-item"><button class="acc-q">Do tickets include a drink? <span class="ic">+</span></button><div class="acc-a"><p>Seated tickets include a welcome drink on arrival. The bar stays open the entire session, with drinks by Lankan Tucker.</p></div></div>
+      <div class="acc-item"><button class="acc-q">Do tickets include a drink? <span class="ic">+</span></button><div class="acc-a"><p>Yes — every ticket includes a complimentary drink on arrival: a spritz cocktail with Seated, a glass of Prosecco with Standing. The bar stays open all afternoon, with drinks by Lankan Tucker.</p></div></div>
+      <div class="acc-item"><button class="acc-q">What's this about a free bottle? <span class="ic">+</span></button><div class="acc-a"><p>When 8 friends book your birthday using your code, we refund your Village package in full AND send a bottle of sparkling to your table with your name on the label — on us.</p></div></div>
       <div class="acc-item"><button class="acc-q">What's the age policy? <span class="ic">+</span></button><div class="acc-a"><p>18+ only.</p></div></div>
     </div>
   </div>
@@ -458,6 +523,45 @@
     document.querySelectorAll('.acc-item').forEach(x=>{x.classList.remove('open');x.querySelector('.acc-a').style.maxHeight=null});
     if(!open){i.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}
   }));
+  // ===== Village birthday: progress bar + shareable code + wine sponsor =====
+  // TODO: wire VILLAGE_BOOKED to the real per-code booking count from Humanitix.
+  //       Leave at 0 until a live data source exists — never show a fabricated number.
+  const VILLAGE_BOOKED = 0;
+  // SINGLE SWAP POINT for the wine sponsor. Generic "bottle of sparkling" copy renders
+  // everywhere until this is set. Once the Calabria Wine sponsorship is CONFIRMED, set:
+  //   const WINE_SPONSOR = "Calabria Wine";   (optionally add their logo separately)
+  const WINE_SPONSOR = null;
+  (function village(){
+    const n = Math.max(0, Math.min(8, VILLAGE_BOOKED)), left = 8 - n;
+    const bar=document.getElementById('progBar'), lbl=document.getElementById('bookedLabel'),
+          note=document.getElementById('progNote'), col=document.getElementById('wineCol');
+    const bottle = WINE_SPONSOR ? WINE_SPONSOR + ' bottle' : 'bottle';
+    if(bar) bar.style.width = (n/8*100)+'%';
+    if(lbl) lbl.textContent = n + ' / 8';
+    if(note) note.textContent = left>0
+      ? left + " more and your birthday's free — plus your " + bottle + " is unlocked."
+      : "That's 8 — your birthday's free and your " + bottle + " is on its way. 🎉";
+    if(col) col.textContent = (WINE_SPONSOR ? WINE_SPONSOR + ' sends' : "we'll send")
+      + ' a bottle of sparkling to your table, with your name on the label.';
+    // Copy / share the personal code
+    const chip=document.getElementById('bdayCode');
+    const code=chip ? (chip.dataset.code||chip.textContent.trim()) : '';
+    const link='https://liveliquidsessions.com.au';
+    const copyBtn=document.getElementById('copyCode'), shareBtn=document.getElementById('shareCode');
+    const flash=(b,m)=>{const o=b.textContent;b.textContent=m;b.disabled=true;setTimeout(()=>{b.textContent=o;b.disabled=false;},1500);};
+    if(copyBtn) copyBtn.addEventListener('click',async()=>{
+      try{await navigator.clipboard.writeText(code);flash(copyBtn,'Copied ✓');}catch(e){flash(copyBtn,'Copy failed');}
+    });
+    if(shareBtn){
+      // TODO: replace [age] with the celebrant's age once codes are personalised.
+      const msg="I'm turning [age] and you're invited to Live Liquid Sessions — use my code "+code+" for $5 off your seat: "+link;
+      shareBtn.addEventListener('click',async()=>{
+        if(navigator.share){ try{await navigator.share({title:'Live Liquid Sessions',text:msg,url:link});}catch(e){} }
+        else { try{await navigator.clipboard.writeText(msg);flash(shareBtn,'Message copied ✓');}catch(e){flash(shareBtn,'Copy failed');} }
+      });
+    }
+  })();
+
   // countdown to doors — Sat 29 Aug 2026, 12:50pm AEST (+10)
   const target=new Date('2026-08-29T12:50:00+10:00').getTime();
   const el=u=>document.querySelector('#count [data-u="'+u+'"]');
