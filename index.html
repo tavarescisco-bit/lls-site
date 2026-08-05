@@ -431,6 +431,7 @@
             <input class="reg-in" name="date" placeholder="Celebration date">
             <input class="reg-in" name="email" type="email" placeholder="Email" required>
           </div>
+          <input class="reg-in" name="phone" type="tel" placeholder="Mobile (so we can call about your table)">
           <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Register &amp; personalise →</button>
         </form>
         <p id="villageMsg" class="reg-msg" role="status"></p>
@@ -561,7 +562,7 @@
   const WINE_BOTTLE  = "Belena";
   // Paste the Google Apps Script Web App URL here once deployed (see setup notes).
   // While empty, the register form falls back to emailing REGISTER_FALLBACK_EMAIL.
-  const REGISTER_ENDPOINT = "";
+  const REGISTER_ENDPOINT = "https://script.google.com/macros/s/AKfycbze2m8UvMArnUZjwF-Hkae7mXK4HfrxsKeiFVXS3aAqrXoJcTOu-Mu-FLWWMbd1vTQcRQ/exec";
   const REGISTER_FALLBACK_EMAIL = "hello@liveliquidsessions.com.au";
   (function village(){
     const col=document.getElementById('wineCol');
@@ -574,7 +575,7 @@
       e.preventDefault();
       const fd=new FormData(form);
       const song=((fd.get('songOther')||'').trim()) || ((fd.get('song')||'').trim());
-      const data={ name:(fd.get('name')||'').trim(), occasion:(fd.get('occasion')||'').trim(), bottle:(fd.get('bottle')||'').trim(), song:song, date:(fd.get('date')||'').trim(), email:(fd.get('email')||'').trim() };
+      const data={ name:(fd.get('name')||'').trim(), occasion:(fd.get('occasion')||'').trim(), bottle:(fd.get('bottle')||'').trim(), song:song, date:(fd.get('date')||'').trim(), email:(fd.get('email')||'').trim(), phone:(fd.get('phone')||'').trim() };
       if(!data.name || !data.email){ msg.textContent="Please add your name and email."; return; }
       const btn=form.querySelector("button[type=submit]"), label=btn.textContent;
       btn.disabled=true; btn.textContent="Sending…";
@@ -585,7 +586,7 @@
           form.reset();
         } else {
           const subject=encodeURIComponent("Village registration — "+data.name);
-          const body=encodeURIComponent("Name: "+data.name+"\nCelebrating: "+data.occasion+"\nBottle name: "+data.bottle+"\nSong request: "+data.song+"\nDate: "+data.date+"\nEmail: "+data.email);
+          const body=encodeURIComponent("Name: "+data.name+"\nCelebrating: "+data.occasion+"\nBottle name: "+data.bottle+"\nSong request: "+data.song+"\nDate: "+data.date+"\nEmail: "+data.email+"\nPhone: "+data.phone);
           window.location.href="mailto:"+REGISTER_FALLBACK_EMAIL+"?subject="+subject+"&body="+body;
           msg.textContent="Opening your email — hit send and you're registered! 🎉";
         }
