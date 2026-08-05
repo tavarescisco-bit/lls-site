@@ -371,7 +371,7 @@
 <section class="bday" id="birthdays">
   <div class="wrap">
     <div class="head"><p class="eyebrow">Birthdays &amp; Celebrations</p><h2>Your birthday or celebration. <em>On us.</em></h2><p style="color:var(--muted);margin-top:6px">(No, really.)</p></div>
-    <p class="bday-lead">Turning a year older? Or celebrating your hens? Make the whole room sing for it. Book The Village, bring your people, and we'll give you your money back — bottle and all.</p>
+    <p class="bday-lead">Turning a year older? Or celebrating your hens? Make the whole room sing for it. Book The Village for nine, and the ninth seat — yours — is free. No codes, no refunds, no chasing. It comes off at checkout.</p>
 
     <!-- 3-step explainer -->
     <div class="bday-steps">
@@ -382,14 +382,14 @@
       </div>
       <div class="bstep">
         <span class="n">2</span>
-        <h4>Share your code</h4>
-        <p>Send it to your people. Every booking that uses it counts towards your eight — the more you share, the closer you get.</p>
+        <h4>Book nine seats together</h4>
+        <p>You and eight of your people, in the one booking. Everyone sits together — that's the whole point of The Village.</p>
       </div>
       <div class="bstep">
         <span class="n">3</span>
-        <h4>Bring 8, get it all free</h4>
+        <h4>Your seat is free</h4>
         <!-- WINE SPONSOR: generic copy renders by default. Single swap point is WINE_SPONSOR in the script below. -->
-        <p>Your $88 is refunded in full — and <span id="wineCol">Calabria Wines sends a personalised bottle of Belena to your table, with your name on the label.</span></p>
+        <p>$88 comes off automatically at checkout — and <span id="wineCol">Calabria Wines sends a personalised bottle of Belena to your table, with your name on the label.</span></p>
       </div>
     </div>
 
@@ -436,7 +436,7 @@
         </form>
         <p id="villageMsg" class="reg-msg" role="status"></p>
 
-        <p class="fine">Register to lock in your code, your bottle and your song — we'll email your personal code and set up your table. Share your code — when 8 friends book, your $88 is refunded in full AND Calabria Wines sends a personalised bottle of Belena, name on the label. Guests must book by Saturday 22 August.</p>
+        <p class="fine">Register to lock in your bottle name and your song — then book nine Village seats in the one order and $88 comes off automatically at checkout, so your seat is free. Bigger group? Book as many as you like; one free seat applies per booking. Register by Saturday 22 August so we have time to get the bottle ready.</p>
         <a class="btn btn-ghost" href="https://events.humanitix.com/live-liquid-sessions" style="width:100%;justify-content:center;margin-top:8px">Or book The Village now →</a>
       </div>
     </div>
@@ -489,7 +489,7 @@
       <div class="acc-item"><button class="acc-q">Which sitting should I pick? <span class="ic">+</span></button><div class="acc-a"><p>The Long Lunch (1–3pm) is the relaxed one; the Golden Hour (4–6pm) is the warm wind-down. Same bill either way.</p></div></div>
       <div class="acc-item"><button class="acc-q">What's the music? <span class="ic">+</span></button><div class="acc-a"><p>Live old-school R&amp;B — slow jams, R&amp;B classics, New Jack Swing — from The Men of R&amp;B Project, hosted by MC Simba.</p></div></div>
       <div class="acc-item"><button class="acc-q">Do tickets include a drink? <span class="ic">+</span></button><div class="acc-a"><p>Yes — every ticket includes a complimentary drink on arrival: a spritz with Seated, a glass of sparkling with Standing. The bar stays open all afternoon, with drinks by Lankan Tucker.</p></div></div>
-      <div class="acc-item"><button class="acc-q">What's this about a free bottle? <span class="ic">+</span></button><div class="acc-a"><p>When 8 friends book your birthday using your code, we refund your Village package in full AND send a personalised bottle of Belena (Calabria Wines) to your table with your name on the label — on us.</p></div></div>
+      <div class="acc-item"><button class="acc-q">How does the free seat work? <span class="ic">+</span></button><div class="acc-a"><p>Book nine Village seats in the one order and $88 — one full seat — comes off automatically at checkout. Nothing to claim, no code to enter, no refund to wait for. Bigger group? Book as many as you like; one free seat applies per booking. We also send a personalised bottle of Belena (Calabria Wines) to your table with your name on the label.</p></div></div>
       <div class="acc-item"><button class="acc-q">What's the age policy? <span class="ic">+</span></button><div class="acc-a"><p>18+ only.</p></div></div>
     </div>
   </div>
@@ -582,7 +582,7 @@
       try{
         if(REGISTER_ENDPOINT){
           await fetch(REGISTER_ENDPOINT, {method:"POST", mode:"no-cors", headers:{"Content-Type":"text/plain;charset=utf-8"}, body:JSON.stringify(data)});
-          msg.textContent="You're in! 🎉 Bottle and song locked in — we'll email your personal code and set up your table shortly.";
+          msg.textContent="You're in! 🎉 Bottle and song locked in. Now book nine Village seats in the one order — your seat comes off free at checkout. We'll set up your table.";
           form.reset();
         } else {
           const subject=encodeURIComponent("Village registration — "+data.name);
