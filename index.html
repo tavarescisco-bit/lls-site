@@ -158,6 +158,9 @@
   .reg-in:focus{outline:none;border-color:var(--gold)}
   .reg-row{display:flex;gap:10px;flex-wrap:wrap}
   .reg-row .reg-in{flex:1 1 150px}
+  select.reg-in{appearance:none;-webkit-appearance:none;cursor:pointer;padding-right:34px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' fill='none' stroke='%23c9a45f' stroke-width='1.6'/></svg>");background-repeat:no-repeat;background-position:right 13px center}
+  select.reg-in:invalid,select.reg-in option[value=""]{color:#8f8266}
+  select.reg-in option{color:#1a1204}
   .reg-msg{font-weight:600;font-size:.94rem;color:var(--gold2);margin:6px 0 12px}
   .reg-msg:empty{margin:0}
   /* Birthday — personal code + share */
@@ -401,15 +404,38 @@
         <form id="villageForm" class="reg-form" novalidate>
           <input class="reg-in" name="name" placeholder="Your name" required>
           <input class="reg-in" name="occasion" placeholder="What are you celebrating? (birthday, hens…)" required>
+          <input class="reg-in" name="bottle" placeholder="Name for your Belena bottle (on the label)">
+          <!-- Song request: curated playlist + write-your-own. Edit these <option>s freely. -->
+          <select class="reg-in" name="song" aria-label="Request a song">
+            <option value="">Request a song for your moment…</option>
+            <option>Happy Birthday — Stevie Wonder</option>
+            <option>Isn't She Lovely — Stevie Wonder</option>
+            <option>My Girl — The Temptations</option>
+            <option>Let's Get It On — Marvin Gaye</option>
+            <option>End of the Road — Boyz II Men</option>
+            <option>I'll Make Love to You — Boyz II Men</option>
+            <option>Lovely Day — Bill Withers</option>
+            <option>Ain't No Sunshine — Bill Withers</option>
+            <option>No Diggity — Blackstreet</option>
+            <option>Poison — Bell Biv DeVoe</option>
+            <option>Return of the Mack — Mark Morrison</option>
+            <option>If I Ain't Got You — Alicia Keys</option>
+            <option>Ordinary People — John Legend</option>
+            <option>So Sick — Ne-Yo</option>
+            <option>Adorn — Miguel</option>
+            <option>Best Part — Daniel Caesar</option>
+            <option value="Surprise me — band's choice">Surprise me — band's choice</option>
+          </select>
+          <input class="reg-in" name="songOther" placeholder="…or name your own song">
           <div class="reg-row">
             <input class="reg-in" name="date" placeholder="Celebration date">
             <input class="reg-in" name="email" type="email" placeholder="Email" required>
           </div>
-          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Register my celebration →</button>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center">Register &amp; personalise →</button>
         </form>
         <p id="villageMsg" class="reg-msg" role="status"></p>
 
-        <p class="fine">Register and we'll email you your personal code and set up your table. Share your code — when 8 friends book, your $88 is refunded in full AND Calabria Wines sends a personalised bottle of Belena, name on the label. Guests must book by Saturday 22 August.</p>
+        <p class="fine">Register to lock in your code, your bottle and your song — we'll email your personal code and set up your table. Share your code — when 8 friends book, your $88 is refunded in full AND Calabria Wines sends a personalised bottle of Belena, name on the label. Guests must book by Saturday 22 August.</p>
         <a class="btn btn-ghost" href="https://events.humanitix.com/live-liquid-sessions" style="width:100%;justify-content:center;margin-top:8px">Or book The Village now →</a>
       </div>
     </div>
@@ -547,18 +573,19 @@
     form.addEventListener('submit', async (e)=>{
       e.preventDefault();
       const fd=new FormData(form);
-      const data={ name:(fd.get('name')||'').trim(), occasion:(fd.get('occasion')||'').trim(), date:(fd.get('date')||'').trim(), email:(fd.get('email')||'').trim() };
+      const song=((fd.get('songOther')||'').trim()) || ((fd.get('song')||'').trim());
+      const data={ name:(fd.get('name')||'').trim(), occasion:(fd.get('occasion')||'').trim(), bottle:(fd.get('bottle')||'').trim(), song:song, date:(fd.get('date')||'').trim(), email:(fd.get('email')||'').trim() };
       if(!data.name || !data.email){ msg.textContent="Please add your name and email."; return; }
       const btn=form.querySelector("button[type=submit]"), label=btn.textContent;
       btn.disabled=true; btn.textContent="Sending…";
       try{
         if(REGISTER_ENDPOINT){
           await fetch(REGISTER_ENDPOINT, {method:"POST", mode:"no-cors", headers:{"Content-Type":"text/plain;charset=utf-8"}, body:JSON.stringify(data)});
-          msg.textContent="You're in! 🎉 We'll email your personal code and set up your table shortly.";
+          msg.textContent="You're in! 🎉 Bottle and song locked in — we'll email your personal code and set up your table shortly.";
           form.reset();
         } else {
           const subject=encodeURIComponent("Village registration — "+data.name);
-          const body=encodeURIComponent("Name: "+data.name+"\nCelebrating: "+data.occasion+"\nDate: "+data.date+"\nEmail: "+data.email);
+          const body=encodeURIComponent("Name: "+data.name+"\nCelebrating: "+data.occasion+"\nBottle name: "+data.bottle+"\nSong request: "+data.song+"\nDate: "+data.date+"\nEmail: "+data.email);
           window.location.href="mailto:"+REGISTER_FALLBACK_EMAIL+"?subject="+subject+"&body="+body;
           msg.textContent="Opening your email — hit send and you're registered! 🎉";
         }
