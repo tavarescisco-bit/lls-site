@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="img/logo-drop.png" />
 <title>Live Liquid Sessions — Live Old-School R&B in Carlton | Sat 29 Aug</title>
 <meta name="description" content="Live old-school R&B, sung up close in Carlton. Live Liquid Sessions presents The Men of R&B Project — Sat 29 August at Lankan Tucker. Two sittings. Tickets from $48." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -10,15 +11,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700;9..144,900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 <style>
   :root{
-    --bg:#120f0a; --bg2:#1b1710; --panel:#221c13;
-    --cream:#f4ead6; --muted:#bcab8c; --line:rgba(233,198,126,.16);
-    --gold:#d9a94e; --gold2:#eccb85;
+    --bg:#241a13; --bg2:#2d211a; --panel:#382a20;
+    --cream:#f2e7d0; --muted:#c2ac86; --line:rgba(233,198,126,.18);
+    --gold:#e0b25a; --gold2:#eccb85;
     --maxw:1180px; --radius:16px;
     --tix:https://events.humanitix.com/live-liquid-sessions;
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{scroll-behavior:smooth}
-  body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--cream);line-height:1.6;overflow-x:hidden}
+  body{font-family:'Inter',system-ui,sans-serif;background:radial-gradient(120% 55% at 50% -5%,#4a382c 0%,#31251c 40%,#241a13 100%) var(--bg);color:var(--cream);line-height:1.6;overflow-x:hidden}
+  body::after{content:"";position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:.05;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
   h1,h2,h3,.disp{font-family:'Fraunces',Georgia,serif;line-height:1.03;letter-spacing:-.01em}
   a{color:inherit;text-decoration:none}
   img{max-width:100%;display:block}
@@ -31,6 +33,11 @@
   .btn-primary:hover{transform:translateY(-2px)}
   .btn-ghost{background:transparent;color:var(--cream);border-color:rgba(244,234,214,.3)}
   .btn-ghost:hover{border-color:var(--gold);color:var(--gold2)}
+  /* logos + editorial flourishes */
+  .brand-img{height:30px;width:auto;display:block}
+  .hero-mark{height:62px;width:auto;margin:0 0 6px -2px;opacity:.95;filter:drop-shadow(0 6px 18px rgba(0,0,0,.35))}
+  .foot-logo{height:40px;width:auto;margin:0 auto 14px;opacity:.92}
+  .eyebrow::before{content:"";display:inline-block;width:30px;height:1px;background:currentColor;opacity:.55;vertical-align:middle;margin-right:12px;margin-bottom:3px}
 
   header{position:sticky;top:0;z-index:50;background:rgba(18,15,10,.72);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
   .nav{display:flex;align-items:center;justify-content:space-between;height:70px}
@@ -43,7 +50,7 @@
   /* HERO */
   .hero{position:relative;min-height:92vh;display:flex;align-items:center;overflow:hidden}
   .hero-bg{position:absolute;inset:0;background:url('img/hero.png') center/cover no-repeat;filter:saturate(1.05)}
-  .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,15,10,.94) 0%,rgba(18,15,10,.78) 40%,rgba(18,15,10,.35) 100%)}
+  .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(33,24,17,.94) 0%,rgba(36,26,19,.78) 40%,rgba(40,29,20,.34) 100%)}
   .hero .wrap{position:relative;z-index:2}
   .hero h1{font-weight:900;font-size:clamp(3rem,10vw,7.5rem);margin:14px 0 0}
   .hero .sub{font-size:clamp(1.05rem,1.9vw,1.4rem);max-width:640px;margin-top:20px;color:#e7dcc4;font-weight:500}
@@ -61,12 +68,20 @@
   .head{max-width:760px;margin-bottom:46px}
   .head h2{font-size:clamp(2.1rem,6vw,4rem);font-weight:900;margin-top:8px}
   .head p{color:var(--muted);margin-top:14px;font-size:1.05rem}
-  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  .act{border-radius:var(--radius);overflow:hidden;background:var(--panel);border:1px solid var(--line)}
-  .act img{aspect-ratio:3/4;object-fit:cover;width:100%}
-  .act .nm{padding:14px 14px 16px}
-  .act .nm b{font-family:'Fraunces';font-weight:700;font-size:1.05rem}
-  .act .nm small{display:block;color:var(--muted);font-size:.8rem;margin-top:3px}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:44px 30px;margin-top:20px}
+  .act{background:#f3ead6;padding:12px 12px 0;border-radius:3px;box-shadow:0 20px 44px -18px rgba(0,0,0,.6);position:relative;transition:transform .28s ease}
+  .grid .act:nth-child(1){transform:rotate(-2.5deg)}
+  .grid .act:nth-child(2){transform:rotate(1.6deg)}
+  .grid .act:nth-child(3){transform:rotate(-1.4deg)}
+  .grid .act:nth-child(4){transform:rotate(2deg)}
+  .grid .act:nth-child(5){transform:rotate(-2deg)}
+  .grid .act:nth-child(6){transform:rotate(1.4deg)}
+  .act:hover{transform:rotate(0) translateY(-5px)}
+  .act img{aspect-ratio:3/4;object-fit:cover;width:100%;border-radius:1px}
+  .act .nm{padding:12px 4px 15px;text-align:center}
+  .act .nm b{font-family:'Fraunces';font-weight:700;font-size:1.06rem;color:#2a2018;display:block}
+  .act .nm small{display:block;color:#8a6b4a;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;margin-top:5px}
+  .act::before{content:"";position:absolute;top:-15px;left:50%;width:30px;height:30px;transform:translateX(-50%) rotate(12deg);opacity:.82;background-repeat:no-repeat;background-size:contain;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 40'%3E%3Cpath d='M6 4 L6 30 a6 6 0 0 0 12 0 L18 12' fill='none' stroke='%23cbb98f' stroke-width='2.2' stroke-linecap='round'/%3E%3Ccircle cx='6' cy='4' r='2.4' fill='%23cbb98f'/%3E%3C/svg%3E")}
   .host{margin-top:22px;font-size:1.1rem;font-weight:600}
   .host .tag{display:inline-block;background:linear-gradient(180deg,var(--gold2),var(--gold));color:#211705;padding:4px 14px;border-radius:100px;font-weight:700}
 
@@ -227,7 +242,7 @@
 <body>
 <header>
   <div class="wrap nav">
-    <a class="brand" href="#home">Live Liquid <span class="gold">Sessions</span></a>
+    <a class="brand" href="#home"><img class="brand-img" src="img/logo-wordmark.png" alt="Live Liquid Sessions"></a>
     <nav class="nav-links" id="navLinks">
       <a class="link" href="#vibe">The Vibe</a>
       <a class="link" href="#bill">Lineup</a>
@@ -244,6 +259,7 @@
 <section class="hero" id="home">
   <div class="hero-bg"></div>
   <div class="wrap">
+    <img class="hero-mark" src="img/logo-drop.png" alt="">
     <p class="eyebrow">Lankan Tucker · Carlton · Saturday 29 August</p>
     <h1>Live Liquid<br><span class="gold">Sessions</span></h1>
     <p class="hero-tag gold">Boozy brunch, done differently.</p>
@@ -516,7 +532,7 @@
 </section>
 
 <!-- COUNTDOWN -->
-<section id="countdown" style="text-align:center;background:linear-gradient(rgba(12,10,7,.74),rgba(12,10,7,.86)),url('img/crowd.png') center/cover no-repeat">
+<section id="countdown" style="text-align:center;background:linear-gradient(rgba(33,24,17,.76),rgba(33,24,17,.9)),url('img/crowd.png') center/cover no-repeat">
   <div class="wrap">
     <p class="eyebrow">Saturday 29 August</p>
     <h2 style="font-size:clamp(2.2rem,6vw,3.6rem);font-weight:700;font-family:'Fraunces';margin-top:10px">Doors open in…</h2>
@@ -533,6 +549,7 @@
 <footer>
   <div class="wrap">
     <div class="foot-cta">
+      <img class="foot-logo" src="img/logo-wordmark.png" alt="Live Liquid Sessions">
       <h2>Don't just hear about it after.</h2>
       <p>Saturday 29 August · Lankan Tucker, Carlton · from $48 · Presented by Lankan Tucker</p>
       <a class="btn btn-primary" href="https://events.humanitix.com/live-liquid-sessions">Get Tickets</a>
