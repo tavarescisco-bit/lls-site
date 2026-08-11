@@ -48,10 +48,11 @@
   .nav-toggle{display:none;background:none;border:0;color:var(--cream);font-size:1.5rem;cursor:pointer}
 
   /* HERO */
-  .hero{position:relative;min-height:92vh;display:flex;align-items:center;overflow:hidden}
-  .hero-bg{position:absolute;inset:0;background:url('img/hero.png') center/cover no-repeat;filter:saturate(1.05)}
-  .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(33,24,17,.94) 0%,rgba(36,26,19,.78) 40%,rgba(40,29,20,.34) 100%)}
-  .hero .wrap{position:relative;z-index:2}
+  .hero{position:relative;min-height:92vh;display:flex;align-items:flex-end;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;background:url('img/hero-banner.png') center/cover no-repeat;filter:saturate(1.05)}
+  .hero-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(33,24,17,0) 44%,rgba(33,24,17,.32) 70%,rgba(33,24,17,.88) 100%)}
+  .hero .wrap{position:relative;z-index:2;padding-bottom:46px}
+  .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   .hero h1{font-weight:900;font-size:clamp(3rem,10vw,7.5rem);margin:14px 0 0}
   .hero .sub{font-size:clamp(1.05rem,1.9vw,1.4rem);max-width:640px;margin-top:20px;color:#e7dcc4;font-weight:500}
   .hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
@@ -228,6 +229,10 @@
   .map-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:grayscale(.35) contrast(1.05) brightness(.9)}
 
   @media(max-width:900px){
+    .hero{display:block;min-height:0}
+    .hero-bg{position:relative;inset:auto;width:100%;aspect-ratio:16/9;background-size:contain;background-color:#241a13}
+    .hero-bg::after{display:none}
+    .hero .wrap{padding:22px 0 6px}
     .grid,.vibe-cards,.buzz-grid,.fd-grid{grid-template-columns:repeat(2,1fr)}
     .sit-grid,.tk-grid,.map-wrap,.bday-steps{grid-template-columns:1fr}
     .map-frame{min-height:320px}
@@ -259,14 +264,10 @@
 <section class="hero" id="home">
   <div class="hero-bg"></div>
   <div class="wrap">
-    <img class="hero-mark" src="img/logo-drop.png" alt="">
-    <p class="eyebrow">Lankan Tucker · Carlton · Saturday 29 August</p>
-    <h1>Live Liquid<br><span class="gold">Sessions</span></h1>
-    <p class="hero-tag gold">Boozy brunch, done differently.</p>
-    <p class="sub">Live Old School R&amp;B — sung up close in Carlton's sunniest room. Big voices, cold drinks, golden afternoon light. Two sittings, one Saturday.</p>
+    <h1 class="sr-only">Live Liquid Sessions — Men of R&amp;B Project · Carlton · Old School R&amp;B</h1>
     <div class="hero-cta">
       <a class="btn btn-primary" href="https://events.humanitix.com/live-liquid-sessions">Get Tickets — from $48</a>
-      <a class="btn btn-ghost" href="#vibe">What's the night?</a>
+      <a class="btn btn-ghost" href="#vibe">What's on the day?</a>
     </div>
     <p class="hero-meta">Seated $58 · Standing $48 · Sittings 1–3pm &amp; 4–6pm · 18+ · Limited room</p>
   </div>
@@ -284,6 +285,7 @@
 <section class="vibe" id="vibe">
   <div class="wrap">
     <p class="eyebrow">The Vibe</p>
+    <p class="sub" style="max-width:680px;margin:0 0 18px">Live Old School R&amp;B — sung up close in Carlton's sunniest room. Big voices, cold drinks, golden afternoon light. Two sittings, one Saturday.</p>
     <h2>No stage. No back row. <span class="gold" style="display:block">Just the room and the voices.</span></h2>
     <p>You've probably walked past it — a bright yellow room on Lygon Street that most of Melbourne only knows in daylight. For one Saturday, we're keeping it open past closing, and filling it with sound.</p>
     <p>One guitar. Voices that don't stay on a stage, because there isn't one — our singers move through the room, close enough that you feel the note before you hear it. Drinks in hand. Sun through the windows turning gold as the afternoon rolls on.</p>
