@@ -159,6 +159,12 @@
   .village-card .inc{color:#d9ccae;font-size:.96rem;border-top:1px solid var(--line);padding-top:18px;margin-bottom:22px}
   .fine{color:#8f8266;font-size:.8rem;margin-top:16px;line-height:1.6}
   /* Birthday — 3-step explainer */
+  .bottle-feature{background:linear-gradient(180deg,rgba(217,169,78,.10),rgba(217,169,78,.03));border:1px solid var(--gold);border-radius:var(--radius);padding:34px 32px;margin:30px 0 8px;text-align:center;box-shadow:0 30px 60px -45px rgba(217,169,78,.65)}
+  .bottle-feature .kicker{font-weight:700;letter-spacing:.2em;text-transform:uppercase;font-size:.7rem;color:var(--muted);margin-bottom:10px}
+  .bottle-feature h3{font-family:'Fraunces';font-weight:900;font-size:clamp(1.7rem,4vw,2.5rem);line-height:1.05;margin-bottom:6px}
+  .bottle-feature .present{font-size:.9rem;color:var(--gold2);letter-spacing:.06em;margin-bottom:14px}
+  .bottle-feature .tagline{font-family:'Fraunces';font-weight:700;font-size:1.15rem;color:#e9dcc0;margin-bottom:14px}
+  .bottle-feature p.body{color:var(--muted);font-size:1rem;line-height:1.6;max-width:52ch;margin:0 auto}
   .bday-lead{color:#d9ccae;font-size:1.12rem;max-width:58ch;margin:0 0 6px}
   .bday-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:34px 0 42px}
   .bstep{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:30px 26px;position:relative}
@@ -379,7 +385,7 @@
         <a class="btn btn-ghost" href="https://events.humanitix.com/live-liquid-sessions" style="width:100%;justify-content:center">Get Standing Tickets</a>
       </div>
     </div>
-    <p class="tk-crosslink"><a href="#birthdays">Booking for a birthday? Bring 8 and go free — see below ↓</a></p>
+    <p class="tk-crosslink"><a href="#birthdays">Booking for a birthday? Nine seats, pay for eight — plus The Birthday Bottle ↓</a></p>
     <p style="text-align:center;margin-top:20px;color:var(--muted)">Drinks by Lankan Tucker · 18+ only · Limited capacity — when a sitting's gone, it's gone.</p>
   </div>
 </section>
@@ -387,32 +393,37 @@
 <!-- BIRTHDAYS -->
 <section class="bday" id="birthdays">
   <div class="wrap">
-    <div class="head"><p class="eyebrow">Birthdays &amp; Celebrations</p><h2>Your birthday or celebration. <em>On us.</em></h2><p style="color:var(--muted);margin-top:6px">(No, really.)</p></div>
-    <p class="bday-lead">Turning a year older? Or celebrating your hens? Make the whole room sing for it. Book The Village for nine, and the ninth seat — yours — is free. No codes, no refunds, no chasing. It comes off at checkout.</p>
+    <div class="head"><p class="eyebrow">Birthdays &amp; Celebrations</p><h2>A bottle with <em>your name</em> on it.</h2><p style="color:var(--muted);margin-top:6px">And the whole room singing.</p></div>
+    <div class="bottle-feature">
+      <p class="kicker">The signature moment</p>
+      <h3 class="gold">The Birthday Bottle</h3>
+      <p class="present">Presented by <strong id="wineHouse">Calabria Wines</strong></p>
+      <p class="tagline">Your name. Your bottle. Your moment.</p>
+      <p class="body" id="wineCol">A personalised bottle of Belena waits on your table with your name printed on the label — then the band stops and sings for you.</p>
+    </div>
+    <p class="bday-lead">Turning a year older? Celebrating your hens? Book The Village and bring eight people — <strong>nine seats, pay for eight.</strong> Yours is free.</p>
 
     <!-- 3-step explainer -->
     <div class="bday-steps">
       <div class="bstep">
         <span class="n">1</span>
-        <h4>Book The Village <span class="amt">$88</span></h4>
-        <p>Your seat, your crew seated together, a cocktail on arrival and a shot (tequila or vodka) to kick things off, and a live song from the band just for you.</p>
+        <h4>Tell us two things</h4>
+        <p>The name to print on your bottle, and the song you want sung. We take care of the rest.</p>
       </div>
       <div class="bstep">
         <span class="n">2</span>
-        <h4>Request your song</h4>
-        <p>Tell us the name for your bottle and the song you want sung — we'll play it at the perfect moment during the day.</p>
+        <h4>Book nine seats <span class="amt">$88 each</span></h4>
+        <p>One order, nine Village seats. Your crew seated together, a cocktail on arrival and a shot to kick things off.</p>
       </div>
       <div class="bstep">
         <span class="n">3</span>
-        <h4>Bring 8, your seat's free</h4>
-        <!-- WINE SPONSOR: generic copy renders by default. Single swap point is WINE_SPONSOR in the script below. -->
-        <p>Book nine seats in the one order and $88 — your seat — comes off automatically at checkout. And <span id="wineCol">Calabria Wines sends a personalised bottle of Belena to your table, with your name on the label.</span></p>
+        <h4>Pay for eight</h4>
+        <p>$88 — your seat — comes off automatically at checkout. Nothing to claim, nothing to chase. Bigger group? One free seat per booking.</p>
       </div>
     </div>
-
     <div class="village-wrap">
       <div class="village-card">
-        <p class="tag">The Village Package</p>
+        <p class="tag">The Village Package · incl. The Birthday Bottle</p>
         <div class="price">$88</div>
         <p class="inc">Your seat · group seating · a cocktail on arrival · a shot (tequila or vodka) · a live song, just for you.</p>
 
@@ -453,7 +464,7 @@
         </form>
         <p id="villageMsg" class="reg-msg" role="status"></p>
 
-        <p class="fine">Register to lock in your bottle name and your song — then book nine Village seats in the one order and $88 comes off automatically at checkout, so your seat is free. Bigger group? Book as many as you like; one free seat applies per booking. Register by Saturday 22 August so we have time to get the bottle ready.</p>
+        <p class="fine">Register to lock in your bottle name and your song — then book nine Village seats in the one order and $88 comes off automatically at checkout, so your seat is free. Bigger group? Book as many as you like; one free seat applies per booking. Register at least a week before so we have time to print your Birthday Bottle label.</p>
         <a class="btn btn-ghost" href="https://events.humanitix.com/live-liquid-sessions" style="width:100%;justify-content:center;margin-top:8px">Or book The Village now →</a>
       </div>
     </div>
@@ -506,7 +517,7 @@
       <div class="acc-item"><button class="acc-q">What time does it run? <span class="ic">+</span></button><div class="acc-a"><p>The Golden Hour sitting, 4–6pm, doors at 3:50. That's the only sitting on sale — the room warms up, the light drops low, and Saturday winds down right. If we sell it out we'll release a second sitting at 1–3pm.</p></div></div>
       <div class="acc-item"><button class="acc-q">What's the music? <span class="ic">+</span></button><div class="acc-a"><p>Live old-school R&amp;B — slow jams, R&amp;B classics, New Jack Swing — from The Men of R&amp;B Project, hosted by MC Simba.</p></div></div>
       <div class="acc-item"><button class="acc-q">Do tickets include a drink? <span class="ic">+</span></button><div class="acc-a"><p>Yes — every ticket includes a complimentary drink on arrival: a spritz with Seated, a glass of sparkling with Standing. The bar stays open all afternoon, with drinks by Lankan Tucker.</p></div></div>
-      <div class="acc-item"><button class="acc-q">How does the free seat work? <span class="ic">+</span></button><div class="acc-a"><p>Book nine Village seats in the one order and $88 — one full seat — comes off automatically at checkout. Nothing to claim, no code to enter, no refund to wait for. Bigger group? Book as many as you like; one free seat applies per booking. We also send a personalised bottle of Belena (Calabria Wines) to your table with your name on the label.</p></div></div>
+      <div class="acc-item"><button class="acc-q">How does the free seat work? <span class="ic">+</span></button><div class="acc-a"><p>Book nine Village seats in the one order and $88 — one full seat — comes off automatically at checkout. Nothing to claim, no code to enter, no refund to wait for. Bigger group? Book as many as you like; one free seat applies per booking. You also get The Birthday Bottle, presented by Calabria Wines — a personalised bottle of Belena on your table with your name printed on the label.</p></div></div>
       <div class="acc-item"><button class="acc-q">What's the age policy? <span class="ic">+</span></button><div class="acc-a"><p>18+ only.</p></div></div>
     </div>
   </div>
@@ -583,10 +594,12 @@
   const REGISTER_ENDPOINT = "https://script.google.com/macros/s/AKfycbze2m8UvMArnUZjwF-Hkae7mXK4HfrxsKeiFVXS3aAqrXoJcTOu-Mu-FLWWMbd1vTQcRQ/exec";
   const REGISTER_FALLBACK_EMAIL = "hello@liveliquidsessions.com.au";
   (function village(){
+    const house=document.getElementById('wineHouse');
+    if(house) house.textContent = WINE_SPONSOR || "Live Liquid Sessions";
     const col=document.getElementById('wineCol');
     if(col) col.textContent = WINE_SPONSOR
-      ? WINE_SPONSOR + " sends a personalised bottle of " + WINE_BOTTLE + " to your table, with your name on the label."
-      : "we'll send a bottle of sparkling to your table, with your name on the label.";
+      ? "A personalised bottle of " + WINE_BOTTLE + " waits on your table with your name printed on the label \u2014 then the band stops and sings for you."
+      : "A bottle of sparkling waits on your table with your name on the label \u2014 then the band stops and sings for you.";
     const form=document.getElementById('villageForm'), msg=document.getElementById('villageMsg');
     if(!form) return;
     form.addEventListener('submit', async (e)=>{
