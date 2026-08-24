@@ -88,6 +88,13 @@
 
   /* SITTINGS */
   .sit-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+  .sit-solo{display:grid;grid-template-columns:1.35fr .85fr;gap:28px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:38px 36px}
+  .sit-solo .tag{font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.78rem;color:var(--gold)}
+  .sit-solo .t{font-family:'Fraunces';font-weight:900;font-size:clamp(2rem,4.5vw,2.9rem);color:var(--gold2);line-height:1;margin:8px 0 12px}
+  .sit-solo p.lead{color:var(--muted);font-size:1.02rem;line-height:1.6;max-width:46ch}
+  .sit-facts{display:flex;flex-direction:column;gap:14px;border-left:1px solid var(--line);padding-left:28px}
+  .sit-facts div span{display:block;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+  .sit-facts div b{font-weight:700;font-size:1.02rem;color:var(--cream)}
   .sit{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:34px}
   .sit .tag{font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.78rem;color:var(--gold)}
   .sit h3{font-size:1.9rem;font-weight:700;margin:8px 0 2px}
@@ -241,6 +248,8 @@
     .hero .wrap{padding:22px 0 6px}
     .grid,.vibe-cards,.buzz-grid,.fd-grid{grid-template-columns:repeat(2,1fr)}
     .sit-grid,.tk-grid,.map-wrap,.bday-steps{grid-template-columns:1fr}
+    .sit-solo{grid-template-columns:1fr;gap:22px;padding:30px 26px}
+    .sit-facts{border-left:0;border-top:1px solid var(--line);padding-left:0;padding-top:20px}
     .map-frame{min-height:320px}
     .nav-links{position:fixed;inset:70px 0 auto 0;flex-direction:column;align-items:flex-start;background:var(--bg2);gap:0;padding:12px 24px 22px;border-bottom:1px solid var(--line);transform:translateY(-160%);transition:transform .3s}
     .nav-links.show{transform:none}
@@ -330,19 +339,19 @@
 <section id="sittings">
   <div class="wrap">
     <div class="head">
-      <p class="eyebrow">One Sitting</p>
+      <p class="eyebrow">One Sitting Only</p>
       <h2>The <span class="gold">Golden Hour</span>.</h2>
     </div>
-    <div class="sit-grid">
-      <div class="sit">
+    <div class="sit-solo">
+      <div>
         <p class="tag">🌇 The Golden Hour Session</p>
-        <p class="t">4:00 – 6:00pm <span style="color:var(--muted);font-size:1rem">(Doors 3:50)</span></p>
-        <p>The room warms up, the light drops low, Saturday winds down right.</p>
+        <p class="t">4:00 – 6:00pm</p>
+        <p class="lead">One room, one sitting, everybody in together. The light drops low, the room warms up, and Saturday winds down the way it should — no stage, no back row, singers moving right through the tables.</p>
       </div>
-      <div class="sit">
-        <p class="tag">☀️ The Long Lunch Session</p>
-        <p class="t">1:00 – 3:00pm <span style="color:var(--muted);font-size:1rem">(Not yet released)</span></p>
-        <p>A second sitting released when we sell out. One room, one afternoon — we're filling it properly first.</p>
+      <div class="sit-facts">
+        <div><span>Doors</span><b>3:50pm</b></div>
+        <div><span>Where</span><b>Lankan Tucker, Carlton</b></div>
+        <div><span>The room</span><b>18+ · Seats are limited</b></div>
       </div>
     </div>
   </div>
@@ -514,7 +523,7 @@
     <h2>Questions.</h2>
     <div id="acc">
       <div class="acc-item"><button class="acc-q">Is seating assigned? <span class="ic">+</span></button><div class="acc-a"><p>Seated tickets get a guaranteed seat and a welcome drink — seating is general, so arrive early for the best spot. Standing puts you right in the middle of it all, no bad view.</p></div></div>
-      <div class="acc-item"><button class="acc-q">What time does it run? <span class="ic">+</span></button><div class="acc-a"><p>The Golden Hour sitting, 4–6pm, doors at 3:50. That's the only sitting on sale — the room warms up, the light drops low, and Saturday winds down right. If we sell it out we'll release a second sitting at 1–3pm.</p></div></div>
+      <div class="acc-item"><button class="acc-q">What time does it run? <span class="ic">+</span></button><div class="acc-a"><p>The Golden Hour sitting, 4–6pm, doors at 3:50. One sitting only — everybody's in the room together. The light drops low, the room warms up, and Saturday winds down right.</p></div></div>
       <div class="acc-item"><button class="acc-q">What's the music? <span class="ic">+</span></button><div class="acc-a"><p>Live old-school R&amp;B — slow jams, R&amp;B classics, New Jack Swing — from The Men of R&amp;B Project, hosted by MC Simba.</p></div></div>
       <div class="acc-item"><button class="acc-q">Do tickets include a drink? <span class="ic">+</span></button><div class="acc-a"><p>Yes — every ticket includes a complimentary drink on arrival: a spritz with Seated, a glass of sparkling with Standing. The bar stays open all afternoon, with drinks by Lankan Tucker.</p></div></div>
       <div class="acc-item"><button class="acc-q">How does the free seat work? <span class="ic">+</span></button><div class="acc-a"><p>Book nine Village seats in the one order and $88 — one full seat — comes off automatically at checkout. Nothing to claim, no code to enter, no refund to wait for. Bigger group? Book as many as you like; one free seat applies per booking. You also get The Birthday Bottle, presented by Calabria Wines — a personalised bottle of Belena on your table with your name printed on the label.</p></div></div>
