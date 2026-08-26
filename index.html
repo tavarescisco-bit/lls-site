@@ -213,6 +213,19 @@
   .fd h3{font-size:1.5rem;font-weight:700;margin-bottom:8px}
   .fd p{color:var(--muted)}
 
+  /* PHOTO REEL */
+  .reel{position:relative;overflow:hidden;padding:0;background:var(--bg)}
+  .reel::before,.reel::after{content:"";position:absolute;top:0;bottom:0;width:14vw;max-width:180px;z-index:2;pointer-events:none}
+  .reel::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+  .reel::after{right:0;background:linear-gradient(270deg,var(--bg),transparent)}
+  .reel-track{display:flex;gap:16px;width:max-content;animation:reel 46s linear infinite}
+  .reel:hover .reel-track{animation-play-state:paused}
+  .reel-track figure{margin:0;flex:0 0 auto;height:clamp(190px,26vw,330px);border-radius:12px;overflow:hidden;position:relative;border:1px solid var(--line)}
+  .reel-track img{height:100%;width:auto;object-fit:cover;filter:brightness(.86) saturate(1.05);transition:filter .4s,transform .5s}
+  .reel-track figure:hover img{filter:brightness(1.02);transform:scale(1.04)}
+  .reel-track figure::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(20,15,9,.5));pointer-events:none}
+  @keyframes reel{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 8px))}}
+  @media (prefers-reduced-motion:reduce){.reel-track{animation:none}.reel{overflow-x:auto}}
   /* GALLERY */
   .gal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;align-items:center}
   .gal-grid a{border-radius:var(--radius);overflow:hidden;position:relative}
@@ -289,7 +302,7 @@
       <a class="btn btn-primary" href="https://events.humanitix.com/live-liquid-sessions">Get Tickets — from $48</a>
       <a class="btn btn-ghost" href="#vibe">What's on the day?</a>
     </div>
-    <p class="hero-meta">Seated sold out · Standing $48 · Golden Hour 4–6pm · 18+</p>
+    <p class="hero-meta">Seated $58 · Standing $48 · Golden Hour 4–6pm · 18+ · Limited room</p>
   </div>
 </section>
 
@@ -362,45 +375,71 @@
   </div>
 </section>
 
+<!-- PHOTO REEL -->
+<section class="reel" aria-label="Photos from the room" style="padding:clamp(28px,4vw,52px) 0">
+  <div class="reel-track">
+      <figure><img src="img/crowd.png" alt="Live Liquid Sessions" loading="lazy"></figure>
+      <figure><img src="img/joshua.png" alt="Live Liquid Sessions" loading="lazy"></figure>
+      <figure><img src="img/hero.png" alt="Live Liquid Sessions" loading="lazy"></figure>
+      <figure><img src="img/cisco.png" alt="Live Liquid Sessions" loading="lazy"></figure>
+      <figure><img src="img/countdown-a.png" alt="Live Liquid Sessions" loading="lazy"></figure>
+      <figure><img src="img/emerson.png" alt="Live Liquid Sessions" loading="lazy"></figure>
+      <figure><img src="img/hero-banner.png" alt="Live Liquid Sessions" loading="lazy"></figure>
+      <figure><img src="img/simba.png" alt="Live Liquid Sessions" loading="lazy"></figure>
+      <figure><img src="img/grant.png" alt="Live Liquid Sessions" loading="lazy"></figure>
+      <figure><img src="img/sam.png" alt="Live Liquid Sessions" loading="lazy"></figure>
+      <figure><img src="img/crowd.png" alt="Live Liquid Sessions" loading="lazy"></figure>
+      <figure><img src="img/joshua.png" alt="Live Liquid Sessions" loading="lazy"></figure>
+      <figure><img src="img/hero.png" alt="Live Liquid Sessions" loading="lazy"></figure>
+      <figure><img src="img/cisco.png" alt="Live Liquid Sessions" loading="lazy"></figure>
+      <figure><img src="img/countdown-a.png" alt="Live Liquid Sessions" loading="lazy"></figure>
+      <figure><img src="img/emerson.png" alt="Live Liquid Sessions" loading="lazy"></figure>
+      <figure><img src="img/hero-banner.png" alt="Live Liquid Sessions" loading="lazy"></figure>
+      <figure><img src="img/simba.png" alt="Live Liquid Sessions" loading="lazy"></figure>
+      <figure><img src="img/grant.png" alt="Live Liquid Sessions" loading="lazy"></figure>
+      <figure><img src="img/sam.png" alt="Live Liquid Sessions" loading="lazy"></figure>
+  </div>
+</section>
+
 <!-- TICKETS -->
 <section class="tickets" id="tickets" style="background:var(--bg2)">
   <div class="wrap">
-    <div class="head"><p class="eyebrow">Tickets</p><h2>Standing <span class="gold">only</span>.</h2></div>
-    <p class="tk-intro">Every seat is gone. Standing is the last way in — and it’s roaming, so the singers come to you. No stage, no back row, glass of sparkling on arrival.</p>
+    <div class="head"><p class="eyebrow">Tickets</p><h2>Two ways <span class="gold">in</span>.</h2></div>
+    <p class="tk-intro">Seated gets you a guaranteed chair for $10 more — Standing puts you right in the thick of it. Either way it’s roaming, so the singers come to you.</p>
     <div class="tk-grid">
-      <div class="tk soldout">
-        <span class="badge gone">Sold out</span>
+      <div class="tk feat">
+        <span class="badge">Spritz on arrival</span>
         <h3>Seated</h3>
         <div class="ptop">
           <div class="price">$58 <small>per person</small></div>
           <!-- TODO: wire "urgency" to real Humanitix inventory, or update this text manually. Do NOT hardcode a fake seat count. -->
-          <span class="urgency">All seats taken</span>
+          <span class="urgency">Selling fast</span>
         </div>
         <ul>
           <li>✦ Right in the middle of everything</li>
           <li>✦ Guaranteed seat (general seating)</li>
           <li>✦ Settle in for the whole sitting</li>
         </ul>
-        <span class="btn disabled" style="width:100%;justify-content:center">Sold Out</span>
+        <a class="btn btn-primary" href="https://events.humanitix.com/live-liquid-sessions" style="width:100%;justify-content:center">Get Seated Tickets</a>
       </div>
-      <div class="tk feat">
+      <div class="tk">
         <span class="badge">Sparkling on arrival</span>
         <h3>Standing</h3>
         <div class="ptop">
           <div class="price">$48 <small>per person</small></div>
           <!-- TODO: wire "urgency" to real Humanitix inventory, or update this text manually. Do NOT hardcode a fake seat count. -->
-          <span class="urgency hot">Only tickets left</span>
+          <span class="urgency">Selling fast</span>
         </div>
         <ul>
           <li>✦ In the thick of it</li>
           <li>✦ No bad view, no bad vibe</li>
           <li>✦ Roving Singers during session</li>
         </ul>
-        <a class="btn btn-primary" href="https://events.humanitix.com/live-liquid-sessions" style="width:100%;justify-content:center">Get Standing Tickets</a>
+        <a class="btn btn-ghost" href="https://events.humanitix.com/live-liquid-sessions" style="width:100%;justify-content:center">Get Standing Tickets</a>
       </div>
     </div>
     <p class="tk-crosslink"><a href="#birthdays">Booking for a birthday? Nine seats, pay for eight — plus The Birthday Bottle ↓</a></p>
-    <p style="text-align:center;margin-top:20px;color:var(--muted)">Drinks by Lankan Tucker · 18+ only · Seated sold out · standing tickets are the last way in.</p>
+    <p style="text-align:center;margin-top:20px;color:var(--muted)">Drinks by Lankan Tucker · 18+ only · Limited capacity — when it's gone, it's gone.</p>
   </div>
 </section>
 
